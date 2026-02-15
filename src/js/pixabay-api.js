@@ -1,23 +1,23 @@
 import axios from 'axios';
 
-const API_KEY = 'personal_api_key'; 
+const API_KEY = '54668130-3dbf133d1de2adf3be7a098c3'; 
 const BASE_URL = 'https://pixabay.com/api/';
 
 export default async function getImagesByQuery(query) {
   const params = {
     key: API_KEY,
     q: query,
-    image_type: 'photo',      // Тільки фотографії
-    orientation: 'horizontal', // Горизонтальна орієнтація
-    safesearch: true,          // Фільтр за віком
+    image_type: 'photo',      
+    orientation: 'horizontal', 
+    safesearch: true,          
   };
 
   try {
     const response = await axios.get(BASE_URL, { params });
-    // Повертаємо властивість data, де знаходиться об'єкт із масивом hits
+   
     return response.data; 
   } catch (error) {
-    console.error("Помилка при виконанні запиту:", error);
+    console.error("Info about error", error);
     throw error;
   }
 }

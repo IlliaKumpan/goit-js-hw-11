@@ -1,9 +1,6 @@
 // import axios from "axios";  
 import getImagesByQuery from "./js/pixabay-api.js";
-import createGallery from "./js/render-functions.js";
-import clearGallery from "./js/render-functions.js";
-import showLoader from "./js/render-functions.js";
-import hideLoader from "./js/render-functions.js";
+import { createGallery, clearGallery, showLoader, hideLoader } from "./js/render-functions.js";
 
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
@@ -17,16 +14,13 @@ const searchForm = document.querySelector('.form');
 searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   
-  // Отримання значення через name="search-text" та видалення пробілів
   const query = event.currentTarget.elements['search-text'].value.trim();
   
-  // Перевірка вмісту на наявність порожнього рядка
   if (!query) {
     iziToast.warning({ message: "Search field cannot be empty!" });
     return;
   }
-
-  clearGallery(); // Очищення попередніх результатів
+  clearGallery(); 
   showLoader();
 
   try {

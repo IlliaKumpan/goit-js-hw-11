@@ -1,15 +1,16 @@
 import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css"; // Обов'язковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css"; 
 
 const galleryElement = document.querySelector('.gallery');
+const loader = document.querySelector('.loader');
 
-// Ініціалізація SimpleLightbox
+
 let lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
 
-export default function createGallery(images) {
+export function createGallery(images) {
   // Розмітка картки згідно з вимогами (webformatURL, largeImageURL, tags, likes і т.д.)
   const markup = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
     return `
@@ -35,9 +36,13 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  document.querySelector('.loader').classList.remove('is-hidden');
+  if (loader) {
+    loader.classList.add('is-open'); // Додаємо клас для відображення
+  }
 }
 
 export function hideLoader() {
-  document.querySelector('.loader').classList.add('is-hidden');
+  if (loader) {
+    loader.classList.remove('is-open'); // Видаляємо клас після завершення
+  }
 }
